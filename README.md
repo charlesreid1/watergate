@@ -9,9 +9,19 @@ and feed the whole thing to a leonardr twitterbot.
 
 ## Dependencies
 
-Beautiful Soup:
+### Beautiful Soup
 
 http://www.crummy.com/software/BeautifulSoup/
+
+```
+pip install beautifulsoup4
+```
+
+### Urllib
+
+```
+pip install urllib
+```
 
 ## Step 1: Finding Primary Text Sources
 
@@ -24,6 +34,8 @@ http://nixon.archives.gov/forresearchers/find/tapes/watergate/wspf/transcripts.p
 ## Step 2: Scraping PDFs
 
 Scrape HTML, look for links to PDFs, create list, download each item in list
+
+BeautifulSoup to parse HTML for links, Urllib to download PDF links.
 
 ## Step 3: OCR Scan PDFs to Tokenizable Text
 
