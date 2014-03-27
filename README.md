@@ -25,11 +25,15 @@ http://nixon.archives.gov/forresearchers/find/tapes/watergate/wspf/transcripts.p
 
 Scrape HTML, look for links to PDFs, create list, download each item in list
 
-## Step 3: OCR Scan PDFs to JSON
+## Step 3: OCR Scan PDFs to Tokenizable Text
 
 Most human-intensive step.
 
-## Step 4: Olipy the JSON
+## Step 4: Tokenize to JSON
+
+Yup. That's it.
+
+## Step 5: Olipy the JSON
 
 This should be sweet and simple.
 
