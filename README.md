@@ -7,13 +7,19 @@ that will scrape a website for PDF files,
 OCR those PDF files, turn them into JSON,
 and feed the whole thing to a leonardr twitterbot.
 
+## Dependencies
+
+Beautiful Soup:
+
+http://www.crummy.com/software/BeautifulSoup/
+
 ## Step 1: Finding Primary Text Sources
 
 I'm using the following websites for PDF files of transcripts:
 
 http://nixon.archives.gov/forresearchers/find/tapes/watergate/trial/transcripts.php
 
-http://nixon.archives.gov/forresearchers/find/tapes/watergate/wspf/index.php
+http://nixon.archives.gov/forresearchers/find/tapes/watergate/wspf/transcripts.php
 
 ## Step 2: Scraping PDFs
 
