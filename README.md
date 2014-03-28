@@ -1,11 +1,24 @@
 # Watergate
 
-This repository contains scripts for text processing related to publicly-released Watergate transcripts.
+## What is this?
 
-It contains Python scripts that will scrape a website for PDF files, download those PDF files, turn them
+This repository contains Python scripts for text processing related to publicly-released Watergate transcripts.
+
+Nixon Library Link: http://nixon.archives.gov/forresearchers/find/tapes/index.php
+
+## Watergate Tape Transcripts Background 
+
+The Nixon Library continues to release audio and text transcripts of audio tapes from the Nixon White House
+taping system. This is an attempt to overcome some of the awkward formatting of the transcripts provided by
+the Nixon Library. 
+
+## How does it work?
+
+The repository contains Python scripts that will scrape a website for PDF files, download those PDF files, turn them
 into text, process the text, and output a JSON data structure.
 
-As a proof-of-concept this JSON structure will be hooked up to Olipy to create a twitterbot agent of chaos.
+As a proof-of-concept this JSON structure will be hooked up to Olipy to create a twitterbot agent of chaos. But the 
+scripts will presumably have many more sophisticated uses.
 
 ## Dependencies
 
