@@ -1,23 +1,25 @@
 # Watergate
 
-This repository contains some Watergate stuff.
+This repository contains scripts for text processing related to publicly-released Watergate transcripts.
 
-The ultimate goal is to create a whiz-bang tool
-that will scrape a website for PDF files,
-OCR those PDF files, turn them into JSON,
-and feed the whole thing to a leonardr twitterbot.
+It contains Python scripts that will scrape a website for PDF files, download those PDF files, turn them
+into text, process the text, and output a JSON data structure.
+
+As a proof-of-concept this JSON structure will be hooked up to Olipy to create a twitterbot agent of chaos.
 
 ## Dependencies
 
 ### Beautiful Soup
 
-http://www.crummy.com/software/BeautifulSoup/
+This is used to process HTML tags. Link: http://www.crummy.com/software/BeautifulSoup/
 
 ```
 pip install beautifulsoup4
 ```
 
 ### Urllib
+
+This is used to download the PDF files.
 
 ```
 pip install urllib
@@ -39,11 +41,11 @@ BeautifulSoup to parse HTML for links, Urllib to download PDF links.
 
 ## Step 3: Extract PDF Text to JSON
 
-Most human-intensive step.
+This uses a Python PDF utility to turn the PDF into text, which works fairly well.
 
-Yup. That's it.
+This text is further processed into JSON pieces.
 
 ## Step 4: Olipy the JSON
 
-This should be sweet and simple.
+This comes at the end, but it should be really easy. Proof: http://charlesmartinreid.com/wiki/Apollo11Junk
 
