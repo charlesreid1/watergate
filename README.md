@@ -4,13 +4,26 @@
 
 This repository contains Python scripts for text processing related to publicly-released Watergate transcripts.
 
-Nixon Library Link: http://nixon.archives.gov/forresearchers/find/tapes/index.php
+Nixon Library documents: http://nixon.archives.gov/forresearchers/find/tapes/index.php
+
+Watergate House Judiciary Committee documents: http://watergate.info/impeachment/judiciary-committee-hearings
+
+Ebook of Transcripts of Eight Presidential Tapes from Nixon to House Judiciary Committee: http://www.ebooksread.com/authors-eng/richard-m-richard-milhous-nixon/transcripts-of-eight-recorded-presidential-conversations-hearings-before-the-co-oxi.shtml
+
+National Archives Watergate Files: http://www.archives.gov/research/investigations/watergate/
+
+Nixon Grand Jury Testimony: http://www.archives.gov/research/investigations/watergate/nixon-grand-jury/
 
 ## Watergate Tape Transcripts Background 
 
-The Nixon Library continues to release audio and text transcripts of audio tapes from the Nixon White House
-taping system. This is an attempt to overcome some of the awkward formatting of the transcripts provided by
-the Nixon Library. 
+The Nixon Library continues to release audio and text transcripts of 
+audio tapes from the Nixon White House taping system. This is an 
+attempt to overcome some of the awkward formatting of the transcripts 
+provided by the Nixon Library.
+
+This repository provides scripts for scraping transcripts,
+putting them through a PDF-to-text library, and munging the
+resulting text so that it is in serializable JSON format. 
 
 ## How does it work?
 
