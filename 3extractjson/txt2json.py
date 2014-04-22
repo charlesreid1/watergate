@@ -9,9 +9,33 @@ from os.path import basename
 
 
 """
-Loads a single text file in.
-Tokenizes it with natural language toolkit NLTK.
-This is to perfect the technique.
+Loads and parses a single text file.
+
+Turns it into JSON.
+
+The strategy needs to apply to the 
+(so far) 118 text files.
+
+Text cleanup that needs to happen:
+* Split text into header / body / footer
+* Find names (identified by ALLCAPS)
+* Parse text into names and text
+
+so something like
+HUNT:Well, uh, about as can be expected. How areyou?COLSON:Uh, just about the same Christ tryin' to holdthe pieces together.
+
+becomes
+["HUNT",
+"Well, uh, about as can be expected. How areyou?",
+"COLSON",
+"Uh, just about the same Christ tryin' to holdthe pieces together."
+]
+
+This will eventually become:
+{"tokens":["Well, uh, about as can be expected.","How are you?"], "speaker":"HUNT"}
+{"tokens":["Uh, just about the same Christ tryin' to holdthe pieces together."], "speaker":"COLSON"}
+
+Which is JSON that olipy can understand.
 """
 
 datdir = '../1primarytexts/txt/'
@@ -28,14 +52,9 @@ for myfile in filenames:
     with open (datdir+myfile+'.txt', "r") as mydat:
         data += mydat.read().replace('\n', '').replace('.','. ')
 
-    # 118 text files.
-    # Text cleanup that needs to happen:
-    # - header and only header on first line and only first line
-    # - line of dialogue on each one
-    # - names split up and corrected
-    # - typos/unsplit words fixed
 
-    # re for all-caps words (i.e., the names)
+
+    # regexp for all-caps words (i.e., the names)
     # - RegexpTokenizer: https://nltk.googlecode.com/svn/trunk/doc/howto/tokenize.html
     # - the regex: http://stackoverflow.com/questions/4598315/regex-to-match-only-uppercase-words-with-some-exceptions
     allnames = RegexpTokenizer('[A-Z]{3,}\w').tokenize(data)
@@ -47,22 +66,65 @@ for myfile in filenames:
             del allnames[ allnames.index(name) ]
             names = unique(allnames)# update names
 
+    print "-"*45
+    print "Found the following names in transcript:"
+    print names
+    print "-"*45
+
     d_indx = {}
 
     # pad names with whitespace to make parsing easier
     for name in names:
-        data = data.replace(name,' '+name+'\n')
+        data = data.replace(name+':',' '+name+' ')
 
-    # obtain index of each occurrence of each name
+    # Now we want to split the string 
+    # at each occurrence of each name.
+    # 
+    # re.split('THIS|THAT|OTHER',mystring)
+    #
+    # First, assemble the re:
+    names_regexp = "("
     for name in names:
-        d_indx[name] = [m.start() for m in re.finditer(name,data)]
-        print "Name",name,"occurs at indices:"
-        print d_indx[name]
+        names_regexp += name
+        names_regexp += "|"
+    # Cut off the last |
+    names_regexp = names_regexp[:-1]
+    names_regexp += ")"
 
-    all_indx = []
-    for k in d_indx.keys():
-        all_indx += d_indx[k]
-    all_indx.sort()
+    data2 = re.split(names_regexp,data)
+
+    # trim whitespace
+    for j, token in enumerate(data2):
+        data2[j] = token.strip()
+
+    print data2 
+
+    import pdb;pdb.set_trace()
+
+    # Okay, ALMOST there.
+    # Now we haver something that looks like this:
+    # ['Transcript of a Dictabelt Recordingof a Conversation Between HowardHunt and Charles Colson, November1972', 'COLSON', 'Hello.', 'HUNT', 'Hi.', 'COLSON', "How we doin'?", 'HUNT', 'Well, uh, about as can be expected.  How areyou?']
+    # 
+    # And we need to turn this into:
+    # { 
+    #   "speaker":"HUNT",
+    #   "tokens" : ["Well, uh, about as can be expected.","How are you?"]
+    # }
+    #
+    # Go through each list item
+    # If it's a name,
+    #   store name as "speaker"
+    #   store next token as "alltokens"
+    #   split() on "alltokens" to get your list of "tokens"
+    #   assemble every person's speaking lines into a single JSON dict 
+    # 
+    # Finally, figure out how to append dictionaries in a JSON file
+
+
+
+
+
+
 
 
 
