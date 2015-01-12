@@ -1,4 +1,5 @@
 from numpy import *
+import simplejson as json
 #import nltk
 from nltk.tokenize import *
 import re
@@ -43,14 +44,15 @@ datdir = '../1primarytexts/txt/'
 # get list of txt files
 filenames = []
 for nf,f in enumerate( os.listdir(datdir) ):
-    if f.endswith(".txt") and nf==0:
+    if f.endswith(".txt"):# and nf==0:
         filenames.append( basename( splitext(f)[0] ) )
+
 
 for myfile in filenames:
 
     data = ""
     with open (datdir+myfile+'.txt', "r") as mydat:
-        data += mydat.read().replace('\n', '').replace('.','. ')
+        data += mydat.read().replace('\n', ' ').replace('.','. ').replace('?','? ')
 
 
 
@@ -97,66 +99,96 @@ for myfile in filenames:
     for j, token in enumerate(data2):
         data2[j] = token.strip()
 
-    print data2 
+    #print data2 
 
-    import pdb;pdb.set_trace()
+    master_list = []
+    for itoken,token in enumerate(data2):
 
-    # Okay, ALMOST there.
-    # Now we haver something that looks like this:
-    # ['Transcript of a Dictabelt Recordingof a Conversation Between HowardHunt and Charles Colson, November1972', 'COLSON', 'Hello.', 'HUNT', 'Hi.', 'COLSON', "How we doin'?", 'HUNT', 'Well, uh, about as can be expected.  How areyou?']
-    # 
-    # And we need to turn this into:
-    # { 
-    #   "speaker":"HUNT",
-    #   "tokens" : ["Well, uh, about as can be expected.","How are you?"]
-    # }
-    #
-    # Go through each list item
-    # If it's a name,
-    #   store name as "speaker"
-    #   store next token as "alltokens"
-    #   split() on "alltokens" to get your list of "tokens"
-    #   assemble every person's speaking lines into a single JSON dict 
-    # 
-    # Finally, figure out how to append dictionaries in a JSON file
+        if itoken==0:
+            pass
+        elif token in names:
+            try:
+                master_list.append(d)
+            except:
+                pass
+            d = {}
+            d['speaker'] = token
+            d['tokens'] = []
+        else:
+            sentences = token.split('. ')
+            for sentence in sentences:
+                if sentence <> '':
+                    d['tokens'].append(sentence+'.')
 
+    import json
+    final_file_text = ''
+    for z in master_list:
+        final_file_text += json.dumps(z)
+        final_file_text += '\n'
 
-
-
-
-
-
-
-
-    # now we can chop the data up into 
-    # - header
-    # - dialogue
-    # - footer
-
-    # then further process each piece.
-    # further processing means extracting
-    # and parsing relevant details, and
-    # putting that all into JSON structure.
+    with open('watergate.json', 'a+') as outfile:
+        outfile.write(final_file_text)
 
 
-
-    # header:
-    # everything up until the occurrence of the first name
-    header = data[0:all_indx[0]]
-
-    # body:
-    # everything else
-    body = data[all_indx[0]:]
-
-    # footer:
-    # there is no footer
+        
 
 
+    ### # Okay, ALMOST there.
+    ### # Now we haver something that looks like this:
+    ### # ['Transcript of a Dictabelt Recordingof a Conversation Between HowardHunt and Charles Colson, November1972', 'COLSON', 'Hello.', 'HUNT', 'Hi.', 'COLSON', "How we doin'?", 'HUNT', 'Well, uh, about as can be expected.  How areyou?']
+    ### # 
+    ### # And we need to turn this into:
+    ### # { 
+    ### #   "speaker":"HUNT",
+    ### #   "tokens" : ["Well, uh, about as can be expected.","How are you?"]
+    ### # }
+    ### #
+    ### # Go through each list item
+    ### # If it's a name,
+    ### #   store name as "speaker"
+    ### #   store next token as "alltokens"
+    ### #   split() on "alltokens" to get your list of "tokens"
+    ### #   assemble every person's speaking lines into a single JSON dict 
+    ### # 
+    ### # Finally, figure out how to append dictionaries in a JSON file
 
-    # Now turn this into JSON
 
 
-    # Consideration: there are probably multiple formats.
-    # Take a quick look to determine how they group up.
-    # Divide them by directory.
+
+
+
+
+
+
+    ### # now we can chop the data up into 
+    ### # - header
+    ### # - dialogue
+    ### # - footer
+
+    ### # then further process each piece.
+    ### # further processing means extracting
+    ### # and parsing relevant details, and
+    ### # putting that all into JSON structure.
+
+
+
+    ### # header:
+    ### # everything up until the occurrence of the first name
+    ### header = data[0:all_indx[0]]
+
+    ### # body:
+    ### # everything else
+    ### body = data[all_indx[0]:]
+
+    ### # footer:
+    ### # there is no footer
+
+
+
+    ### # Now turn this into JSON
+
+
+    ### # Consideration: there are probably multiple formats.
+    ### # Take a quick look to determine how they group up.
+    ### # Divide them by directory.
 

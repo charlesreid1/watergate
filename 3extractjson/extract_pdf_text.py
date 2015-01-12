@@ -1,5 +1,5 @@
 import sys
-import pyPdf
+import PyPDF2
 import os
 from os.path import splitext
 from os.path import basename
@@ -13,7 +13,7 @@ def convertPdf2String(path):
     Turn a PDF file into a string
     """
     content = ""
-    pdf = pyPdf.PdfFileReader(file(path, "rb"))
+    pdf = PyPDF2.PdfFileReader(file(path, "rb"))
     for i in range(0, pdf.getNumPages()):
         content += pdf.getPage(i).extractText() + " \n"
         content = " ".join(content.replace(u"\xa0", u" ").strip().split())
