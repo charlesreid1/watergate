@@ -1,5 +1,5 @@
 #from pdfminer import PDFDocument, PDFNoOutlines
-from pdfminer.pdfparser import PDFDocument
+from pdfminer.pdfdocument import PDFDocument
 from pdfminer.pdfparser import PDFParser
 from pdfminer.pdfpage import PDFPage
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
@@ -38,7 +38,8 @@ from pprint import pprint
 fp = open('../1primarytexts/000-000_35d.pdf', 'rb')
 parser = PDFParser(fp)
 doc = PDFDocument(parser)
-doc.initialize() # leave empty for no password
+#import pdb; pdb.set_trace()
+#doc.initialize() # leave empty for no password
 
 rsrcmgr = PDFResourceManager()
 laparams = LAParams()
