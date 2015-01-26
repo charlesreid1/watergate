@@ -1,6 +1,7 @@
 from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
-from pdfminer.pdfinterp import PDFResourceManager, process_pdf
+from pdfminer.pdfinterp import PDFResourceManager#, process_pdf
+from pdfminer.pdfpage import PDFPage, get_pages
 import StringIO
 
 def convert_pdf(filename):

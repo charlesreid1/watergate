@@ -50,6 +50,10 @@ for nf,f in enumerate( os.listdir(datdir) ):
 
 for myfile in filenames:
 
+    print "\n"
+    print "-"*45
+    print "Working on file "+myfile
+
     data = ""
     with open (datdir+myfile+'.txt', "r") as mydat:
         data += mydat.read().replace('\n', ' ').replace('.','. ').replace('?','? ')
@@ -93,7 +97,10 @@ for myfile in filenames:
     names_regexp = names_regexp[:-1]
     names_regexp += ")"
 
-    data2 = re.split(names_regexp,data)
+    try:
+        data2 = re.split(names_regexp,data)
+    except:
+        pass
 
     # trim whitespace
     for j, token in enumerate(data2):
@@ -126,7 +133,7 @@ for myfile in filenames:
         final_file_text += json.dumps(z)
         final_file_text += '\n'
 
-    with open('watergate.json', 'a+') as outfile:
+    with open('watergate_2.json', 'a+') as outfile:
         outfile.write(final_file_text)
 
 
