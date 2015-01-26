@@ -1,3 +1,13 @@
+# bot stuff
+apikeys.py
+keys/
+
+# pelican stuff
+cache/
+output/
+
+
+
 *.py[cod]
 
 # C extensions
