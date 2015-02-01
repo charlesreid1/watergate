@@ -20,7 +20,7 @@ tweets, and interfaces with Twitter to send out those tweets.
 
 <br />
 
-<a href="https://twitter.com/charlesreid1/thisiswatergate" class="btn btn-primary btn-large">Visit @ThisIsWatergate on Twitter</a>
+<a href="https://twitter.com/thisiswatergate" class="btn btn-primary btn-large">Visit @ThisIsWatergate on Twitter</a>
 
 <br />
 

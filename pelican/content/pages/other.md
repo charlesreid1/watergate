@@ -2,14 +2,14 @@ Title: Other Twitter Bot Flocks
 PageStyle: well
 save_as: other.html
 
-The Apollo Space Junk Bot Flock is just one 
-of several bot flocks that I have
+The Watergate Twitter bot is just one 
+of several Twitter bots that I have
 created. The complete list is here.
 
-<a href="http://charlesreid1.github.io/milton">
-<img src="images/miltonthumb.jpg" /> 
+<a href="http://charlesreid1.github.io/watergate">
+<img src="images/watergatethumb.jpg" /> 
 
-Milton Bot Flock
+Watergate Twitter Bot 
 </a>
 
 <br />
@@ -30,5 +30,15 @@ Ginsberg Bot Flock
 <img src="images/apollothumb.jpg" />
 
 Apollo Space Junk Bot Flock
+</a>
+
+<br />
+
+<br />
+
+<a href="http://charlesreid1.github.io/milton">
+<img src="images/miltonthumb.jpg" /> 
+
+Milton Bot Flock
 </a>
 

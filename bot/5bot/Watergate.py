@@ -6,7 +6,7 @@ def the_real_mccoy():
     """
     s = Shepherd()
     s.setup('keys/',
-            line_interval = 60,
+            line_interval = 140,
             total_interval = 14400 ) # 4 hrs
 
     # for test_tweet:

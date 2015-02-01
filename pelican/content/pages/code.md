@@ -2,6 +2,8 @@ Title: The Code
 PageStyle: well
 save_as: code.html
 
+<a class="btn btn-primary btn-large" href="http://github.com/charlesreid1/watergate">View the Watergate Twitter Bot Code on Github</a>
+
 ## What Is In The Code
 
 The Watergate Twitter Bot is implemented entirely in Python.

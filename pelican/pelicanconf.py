@@ -22,7 +22,7 @@ SITETAGLINE = "The President is on the line."
 # this image must be in content/images/
 SITEIMG = "watergatebkg.jpg" 
 IMGVERTOFFSET = "280px"
-BLOGTITLE = "On The Phone: Watergate Twitterbot Blog"
+BLOGTITLE = "On The Horn: The Watergate Twitterbot Blog"
 
 
 
