@@ -6,7 +6,10 @@ a {
 }
 pre {
     background-color: #00384C;
+    color: #fff;
     border: 1px solid #005C77;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 /*
