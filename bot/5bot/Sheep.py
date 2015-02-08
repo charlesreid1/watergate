@@ -122,7 +122,7 @@ class Sheep(object):
 
                 speaker = ''
                 #while speaker not in ['HALDEMAN','EHRLICHMAN','PRESIDENT','NIXON']:
-                while speaker not in ['DEAN','MITCHELL','PRESIDENT','NIXON']:
+                while speaker not in ['DEAN','PRESIDENT','NIXON']:
                     # Inner loop: messages spaced with short intervals.
                     speaker, tokens = self.dialogue.assemble(self.last_speaker)
                     self.last_speaker = speaker
