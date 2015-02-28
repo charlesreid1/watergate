@@ -1,0 +1,24 @@
+Doing 17 of 22 messages
+[Bot ThisIsWatergate]: PRESIDENT: Eleven?.  On the other hand,as far as the public hearings are concerned,that's something that can't go on.  Do you -- How do you
+[Bot ThisIsWatergate]: do that?.
+Doing 18 of 22 messages
+[Bot ThisIsWatergate]: PRESIDENT: Well you think Cox did?.
+Doing 19 of 22 messages
+Traceback (most recent call last):
+  File "Watergate.py", line 18, in <module>
+    the_real_mccoy()
+  File "Watergate.py", line 15, in the_real_mccoy
+    s.loop()
+  File "/home/charles/codes/watergate/bot/5bot/Shepherd.py", line 77, in loop
+    runsheep(self.all_sheep[0])
+  File "/home/charles/codes/watergate/bot/5bot/Shepherd.py", line 15, in runsheep
+    sheeeep.loop()
+  File "/home/charles/codes/watergate/bot/5bot/Sheep.py", line 127, in loop
+    speaker, tokens = self.dialogue.assemble(self.last_speaker)
+  File "/home/charles/codes/olipy/queneau.py", line 303, in assemble
+    return speaker, list(subassembler.assemble(pattern))
+  File "/home/charles/codes/olipy/queneau.py", line 142, in assemble
+    length = random.choice(self.lengths)
+  File "/usr/lib/python2.7/random.py", line 273, in choice
+    return seq[int(self.random() * len(seq))]  # raises IndexError if seq is empty
+IndexError: list index out of range
