@@ -2,6 +2,9 @@
 apikeys.py
 keys/
 
+*.pdf
+bot/1primarytext/pdf/
+
 # pelican stuff
 cache/
 output/
