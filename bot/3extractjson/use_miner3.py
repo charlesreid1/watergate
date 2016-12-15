@@ -1,3 +1,8 @@
+"""
+So far as I can tell, this extracts each page into 
+an object, provided by pdfminer, that correctly 
+gets text from a given page.
+"""
 #from pdfminer import PDFDocument, PDFNoOutlines
 from pdfminer.pdfdocument import PDFDocument
 from pdfminer.pdfparser import PDFParser
@@ -33,9 +38,9 @@ class PDFPageDetailedAggregator(PDFPageAggregator):
         self.rows = sorted(self.rows, key = lambda x: (x[0], -x[2]))
         self.result = ltpage
 
-from pprint import pprint
+#from pprint import pprint
 
-fp = open('../1primarytexts/000-000_35d.pdf', 'rb')
+fp = open('../1primarytexts/pdf/482-017_482-018.pdf', 'rb')
 parser = PDFParser(fp)
 doc = PDFDocument(parser)
 #import pdb; pdb.set_trace()
@@ -49,7 +54,9 @@ interpreter = PDFPageInterpreter(rsrcmgr, device)
 for page in PDFPage.create_pages(doc):
     interpreter.process_page(page)
     # receive the LTPage object for this page
-    device.get_result()
+    result = device.get_result()
 
-pprint(device.rows)
+#print(device.rows)
 
+for row in device.rows:
+    print row[-1]

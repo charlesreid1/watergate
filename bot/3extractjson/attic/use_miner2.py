@@ -1,7 +1,7 @@
 from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
-from pdfminer.pdfinterp import PDFResourceManager#, process_pdf
-from pdfminer.pdfpage import PDFPage, get_pages
+from pdfminer.pdfinterp import PDFResourceManager, process_pdf
+from pdfminer.pdfpage import PDFPage
 import StringIO
 
 def convert_pdf(filename):
@@ -21,4 +21,4 @@ def convert_pdf(filename):
     return str
 
 if __name__=="__main__":
-    print convert_pdf('../1primarytexts/000-000_35d.pdf')
+    print convert_pdf('../1primarytexts/pdf/482-017_482-018.pdf')
