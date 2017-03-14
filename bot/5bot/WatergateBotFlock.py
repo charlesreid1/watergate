@@ -2,8 +2,8 @@ import rainbowmindmachine as rmm
 import logging
 from collections import deque
 from rainbowmindmachine import QueneauSheep
-from queneau import DialogueAssembler
-from numpy.random import rand
+from rainbowmindmachine.queneau import DialogueAssembler
+from random import random
 
 
 class WatergateSheep(QueneauSheep):
@@ -16,13 +16,17 @@ class WatergateSheep(QueneauSheep):
         messages = []
         speakers = []
 
-        legit_speakers = ['PRESIDENT','EHRLICHMAN','HALDEMANN','KLEINDEIST','HUNT','DEAN','MITCHELL','MCGRUDER','COLSON','KISSINGER','FORD']
+        #legit_speakers = ['PRESIDENT','EHRLICHMAN','HALDEMANN','KLEINDEIST','HUNT','DEAN','MITCHELL','MCGRUDER','LARUE','COLSON','KISSINGER','FORD']
+        legit_speakers = ['COLSON','HUNT','DEAN','PRESIDENT']
 
-        # 100-150 messages
-        Nmessages = int(round(50*rand()+100))
 
-        # 2-6 speakers
-        Npersons  = int(round(4*rand()+2))
+        ################################
+
+        # 100-150 messages. no no - moar moar moar
+        Nmessages = int(round(20*random()+15))
+
+        # 4-8 speakers
+        Npersons  = 4#int(round(3*random()+5))
 
         N = 0
         while N < Nmessages:
@@ -31,7 +35,7 @@ class WatergateSheep(QueneauSheep):
 
             z = len(speakers)
             if z < Npersons:
-                if speaker in legit_speakers:
+                if speaker in legit_speakers or (random()>0.60):
                     speakers.append(speaker)
 
             if speaker in speakers:
@@ -48,13 +52,17 @@ class WatergateSheep(QueneauSheep):
 
 def setup():
     k = rmm.TxtKeymaker()
-    k.make_keys('poems/')
+    k.make_keys('/home/charles/codes/watergate/bot/5bot/data/')
     
 def run():
-    sh = rmm.Shepherd('keys/',sheep_class=WatergateSheep)
+    sh = rmm.Shepherd('/home/charles/codes/watergate/bot/5bot/keys/',sheep_class=WatergateSheep)
 
-    #sh.perform_action('tweet',{'publish':False})
-    sh.perform_pool_action('tweet',{'publish':False})
+    #sh.perform_pool_action('tweet',{'publish':False})
+    sh.perform_pool_action('tweet',{
+            'publish' : True,
+            'inner_sleep' : 120,
+            'outer_sleep' : 1*3600
+        })
 
 if __name__=="__main__":
     run()

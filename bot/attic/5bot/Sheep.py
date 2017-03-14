@@ -3,7 +3,7 @@ from apikeys import *
 import twitter
 import time
 import simplejson as json
-from numpy.random import rand
+from random import random
 
 from queneau import DialogueAssembler
 
@@ -116,7 +116,7 @@ class Sheep(object):
 
             # Outer loop: bursts of conversation of N messages, 
             # spaced with long intervals.
-            Nmessages = int(round(30*rand()+20))
+            Nmessages = int(round(30*random()+20))
             for N in range(Nmessages):
                 print "Doing",N,"of",Nmessages,"messages"
 
@@ -131,10 +131,10 @@ class Sheep(object):
                 #self.test_tweet(s)
                 self.tweet(s)
 
-                time.sleep( short*rand() )
+                time.sleep( short*random() )
 
             print "\n[...]\n"
-            time.sleep( loong*rand() )
+            time.sleep( loong*random() )
 
             #except:
             #    print "Uh oh! Sheep "+self.params['screen_name']+" ran into a problem."
@@ -167,7 +167,7 @@ class Sheep(object):
         """
         Tweet hello world + a random favorite number
         """
-        #txt = "Hello world! My favorite number is %d"%( round(1000*rand()) )
+        #txt = "Hello world! My favorite number is %d"%( round(1000*random()) )
         #self.tweet(txt)
         print txt
 

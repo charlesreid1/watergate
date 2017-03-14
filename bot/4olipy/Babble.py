@@ -3,7 +3,7 @@ Make some Apollo Ipsum...
 """
 import time
 import simplejson as json
-from numpy.random import rand
+from random import random as rand
 
 from queneau import DialogueAssembler
 
