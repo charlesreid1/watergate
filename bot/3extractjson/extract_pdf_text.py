@@ -15,11 +15,13 @@ def convertPdf2String(path):
     content = ""
     pdf = PyPDF2.PdfFileReader(file(path, "rb"))
     for i in range(0, pdf.getNumPages()):
-        content += pdf.getPage(i).extractText() + " \n"
-        content = " ".join(content.replace(u"\xa0", u" ").strip().split())
+        pagecontent = pdf.getPage(i).extractText().replace(u"\xa0",u" ").strip().split()
+        pagecontent += ["\n"]
+        content = " ".join(pagecontent)
     return content
 
-datdir = '../1primarytexts/'
+datdir = '../1primarytexts/pdf/'
+txtdir = '../1primarytexts/txt/'
 
 # get list of pdf files
 filenames = []
@@ -27,18 +29,23 @@ for f in os.listdir(datdir):
     if f.endswith(".pdf"):
         filenames.append( basename( splitext(f)[0] ) )
 
-print filenames
 
 for filename in filenames:
-    print "Extracting text from "+filename+".pdf to "+filename+".txt ..."
+    print "Extracting text from "+datdir+filename+".pdf to "+txtdir+filename+".txt ..."
     try:
-        f = open(datdir+filename+'.txt','w+')
-        f.write(convertPdf2String(datdir+filename+'.pdf').encode("ascii","xmlcharrefreplace"))
+        f = open(txtdir+filename+'.txt','w+')
+        contents = convertPdf2String(datdir+filename+'.pdf').encode("ascii","xmlcharrefreplace") 
+        f.write( contents )
         f.close()
         print "Done."
         print "\n"
-    except:
-        print "Error encountered."
+    except IOError:
+        print "IO error encountered. Continuing..."
+        print "\n"
+    except TypeError:
+        print "Weird error encountered."
+        print datdir+filename+'.pdf'
+        print "Continuing..."
         print "\n"
 
 

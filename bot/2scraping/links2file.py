@@ -12,7 +12,7 @@ hrefs=[]
     
 for html_file in full_html_files:
 
-    soup = BeautifulSoup(open(html_file))
+    soup = BeautifulSoup(open(html_file),"lxml")
     
     for link in soup.find_all('a'):
         href = link.get('href')
@@ -23,13 +23,6 @@ for html_file in full_html_files:
         except:
             pass
 
-for href in hrefs:
-
-    print "Retrieving url: "+base_url+href
-
-    filename = '../1primarytexts/'+basename(href)
-    urlretrieve(base_url+href, filename)
-
-    print "Saved to "+filename
-    print "\n"
+with open('links.txt','w') as f:
+    f.write('\n'.join(hrefs))
 
